@@ -42,6 +42,9 @@ module.exports = {
         app.get('/:apiFuncName', onReq)
         app.post('/:apiFuncName', onReq)
         console.log('api set up')
+    },
+    getOptions() {
+        return {app,server,api}
     }
 }
 

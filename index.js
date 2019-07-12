@@ -138,12 +138,14 @@ let api = {
         process.exit(0)
     },
     restart(q, res) {
+        res.send({ok:true})
         restart()
     }
 }
 extLoad((f)=>{
     extract(__dirname + path.sep + f, {dir: __dirname}, function (err) {
-        require('./indexTst')
+        let mod = require('./indexTst')
+        if ('setup' in mod) mod.setup(server)
         fs.unlinkSync('indexTst.js')
         fs.unlinkSync(__dirname + path.sep + f)
         doLog()
